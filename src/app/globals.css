@@ -119,4 +119,14 @@
   body {
     @apply bg-background text-foreground;
   }
+  .full-center {
+    @apply w-screen h-screen justify-center items-center;
+  }
+
+  .container {
+    @apply flex flex-col gap-10 w-full;
+  }
+  .heading-three {
+    @apply tracking-wider font-semibold text-2xl md:text-3xl;
+  }
 }
