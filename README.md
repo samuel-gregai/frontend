@@ -1,7 +1,5 @@
 # GregTheAI
 
-GregTheAI is a modern, full-stack AI chatbot playground and authentication platform built with Next.js 15, React 19, TypeScript, and Tailwind CSS. It features a robust authentication system, a beautiful UI, and a modular architecture for rapid prototyping and extension.
-
 ## Features
 
 - **AI Chatbot Playground**: Interact with a chatbot in a sleek, responsive chat UI.
