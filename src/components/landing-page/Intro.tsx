@@ -8,9 +8,10 @@ function Intro() {
     <div>
       <div className="flex flex-col items-center justify-center gap-10">
         <BoxReveal>
-          <p className="heading-three">
-            Account Management isn't meant to be paper work
-          </p>
+          <HighlightText
+            text="Account Management isn't meant to be paper work"
+            className="heading-three"
+          />
         </BoxReveal>
         <HighlightText
           text="Yet... We spend 50% of our time doing it"

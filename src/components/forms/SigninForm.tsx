@@ -69,8 +69,11 @@ export function SignInForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="overflow-hidden p-0">
+    <div
+      className={cn("flex flex-col gap-6 md:min-w-[500px]", className)}
+      {...props}
+    >
+      <Card className="overflow-hidden p-0 ">
         <CardContent>
           <Form {...form}>
             <form className="p-6 md:p-8" onSubmit={form.handleSubmit(onSubmit)}>
@@ -169,9 +172,7 @@ export function SignInForm({
                       />
                     </svg>
                     <span className="sr-only">Login with Google</span>
-                    <span>
-                      Google
-                    </span>
+                    <span>Google</span>
                   </Button>
                 </div>
 

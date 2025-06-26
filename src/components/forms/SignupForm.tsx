@@ -85,13 +85,10 @@ export function SignUpForm({
 
   return (
     <div
-      className={cn(
-        "flex min-h-full items-center justify-center w-full",
-        className,
-      )}
+      className={cn("flex  items-center justify-center w-full", className)}
       {...props}
     >
-      <Card className="w-full max-w-[450px] mx-auto overflow-hidden">
+      <Card className="w-full overflow-hidden">
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className=" md:p-8">
@@ -102,7 +99,7 @@ export function SignUpForm({
                     Sign up for a Greg Account
                   </p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-row md:flex-col gap-4">
                   <FormField
                     control={form.control}
                     name="firstName"
@@ -130,7 +127,7 @@ export function SignUpForm({
                     )}
                   />
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
                   <FormField
                     control={form.control}
                     name="email"

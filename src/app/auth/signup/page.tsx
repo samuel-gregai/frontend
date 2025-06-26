@@ -3,7 +3,7 @@ import React from "react";
 
 function SignUp() {
   return (
-    <div>
+    <div className="flex justify-center items-center h-[100dvh] min-w-56 md:min-w-[500px] md:min-h-[500px]">
       <AuthForm />
     </div>
   );
