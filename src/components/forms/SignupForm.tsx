@@ -32,7 +32,7 @@ export function SignUpForm({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>("");
-  const [signUpError, setSignUpError] = useState<String>("");
+  const [signUpError, setSignUpError] = useState<string>("");
 
   const form = useForm<SignupType>({
     resolver: zodResolver(signupSchema),

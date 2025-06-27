@@ -15,8 +15,6 @@ function Chatbox() {
       timestamp: new Date(),
     },
   ]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleSendMessage = useCallback(async (chatMessage: ChatMessage) => {
     const newMessage: Message = {
       id: Date.now().toString(),
@@ -73,7 +71,7 @@ function Chatbox() {
           </div>
         </section>
         <div className="flex-shrink-0 p-4">
-          <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+          <ChatInput onSendMessage={handleSendMessage} />
         </div>
       </main>
     </div>

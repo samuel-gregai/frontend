@@ -1,5 +1,4 @@
 import React from "react";
-import { TextReveal } from "../magicui/text-reveal";
 import HighlightText from "../misc/highlight";
 import { BoxReveal } from "../magicui/box-reveal";
 

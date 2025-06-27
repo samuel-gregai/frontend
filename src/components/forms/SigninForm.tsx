@@ -58,8 +58,11 @@ export function SignInForm({
         setLoginError(errorMessage);
         toast.error(errorMessage);
       }
-    } catch (error: any) {
-      const message = error?.message || "An error occurred during sign in";
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "An error occurred during sign in";
       console.error("Error during sign in:", error);
       setLoginError(message);
       toast.error(message);

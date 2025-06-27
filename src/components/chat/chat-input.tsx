@@ -9,7 +9,7 @@ import { ChatInputProps } from "@/types/chat";
 // import { ACCEPTED_FILE_TYPES } from "@/constants/chat";
 import { getFileTypeLabel } from "@/utils/chat";
 
-function ChatInput({ onSendMessage, isLoading = false }: ChatInputProps) {
+function ChatInput({}: ChatInputProps) {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   // const [closePopOver, setClosePopOver] = useState<Boolean>(false);
   // const [message, setMessage] = useState("");

@@ -9,7 +9,6 @@ import React, {
   useCallback,
   createContext,
   useContext,
-  ReactNode,
 } from "react";
 
 import { AuthContextType, UserType, AuthProviderProps } from "@/types";

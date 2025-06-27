@@ -22,8 +22,12 @@ function RegisterYourInterestForm() {
       if (!res.ok) throw new Error("Failed to send email");
       setSuccess(true);
       setEmail("");
-    } catch (err: any) {
-      setError(err.message || "Something went wrong");
+    } catch (err: unknown) {
+      setError(
+        err instanceof Error && err.message
+          ? err.message
+          : "Something went wrong"
+      );
     } finally {
       setLoading(false);
     }
@@ -40,11 +44,13 @@ function RegisterYourInterestForm() {
             placeholder="m@example.com"
             required
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
           />
         </div>
-        {success && <p className="text-green-600">Check your email for confirmation!</p>}
+        {success && (
+          <p className="text-green-600">Check your email for confirmation!</p>
+        )}
         {error && <p className="text-red-600">{error}</p>}
       </div>
     </form>

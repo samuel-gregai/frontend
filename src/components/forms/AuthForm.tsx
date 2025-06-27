@@ -2,7 +2,6 @@
 import { usePathname } from "next/navigation";
 import { SignInForm } from "@/components/forms/SigninForm";
 import { SignUpForm } from "@/components/forms/SignupForm";
-import Image from "next/image";
 
 export function AuthForm() {
   const pathname = usePathname();
