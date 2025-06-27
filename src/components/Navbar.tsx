@@ -87,7 +87,7 @@ function Navbar() {
                   </Button>
                 ) : (
                   <Button variant="outline" asChild>
-                    <a href="/auth/signin">Sign In</a>
+                    <a href="/signin">Sign In</a>
                   </Button>
                 ))}
             </div>
@@ -146,7 +146,7 @@ function Navbar() {
                 </Button>
               ) : (
                 <Button variant="outline" asChild>
-                  <a href="/auth/signin" onClick={() => setToggleMenu(false)}>
+                  <a href="/signin" onClick={() => setToggleMenu(false)}>
                     Sign In
                   </a>
                 </Button>
