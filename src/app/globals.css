@@ -131,6 +131,6 @@
     @apply flex flex-col gap-10;
   }
   .heading-three {
-    @apply tracking-wider font-semibold text-2xl md:text-3xl;
+    @apply text-2xl md:text-3xl font-semibold;
   }
 }

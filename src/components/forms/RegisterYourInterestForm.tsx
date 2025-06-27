@@ -1,6 +1,8 @@
+"use client";
 import React, { useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 function RegisterYourInterestForm() {
   const [email, setEmail] = useState("");
@@ -47,6 +49,10 @@ function RegisterYourInterestForm() {
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
           />
+
+          <Button type="submit" className="w-full">
+            Register your interest
+          </Button>
         </div>
         {success && (
           <p className="text-green-600">Check your email for confirmation!</p>
