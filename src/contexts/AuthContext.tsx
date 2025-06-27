@@ -218,24 +218,26 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const logout = useCallback(async () => {
     console.log("Logout called");
 
-    // try {
-    //   // Call logout endpoint to clear server-side session
-    //   await authInstance.post(
-    //     "/auth/logout",
-    //     {},
-    //     {
-    //       headers:
-    //         authMethod === "jwt" && localStorage.getItem("access_token")
-    //           ? {
-    //               Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    //             }
-    //           : {},
-    //       withCredentials: true, // Clear cookies
-    //     },
-    //   );
-    // } catch (error) {
-    //   console.error("Logout endpoint failed:", error);
-    // }
+    try {
+      // Call logout endpoint to clear server-side session
+      await authInstance.post(
+        "/auth/logout",
+        {},
+        {
+          headers:
+            authMethod === "jwt" && localStorage.getItem("access_token")
+              ? {
+                  Authorization: `Bearer ${localStorage.getItem(
+                    "access_token"
+                  )}`,
+                }
+              : {},
+          withCredentials: true, // Clear cookies
+        }
+      );
+    } catch (error) {
+      console.error("Logout endpoint failed:", error);
+    }
 
     // Clear client-side storage
     localStorage.removeItem("access_token");
@@ -243,7 +245,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUser(null);
     setAuthMethod(null);
     router.push("/auth/signin");
-  }, [router, authMethod]);
+  }, [router, authMethod, verifyAuthWithBackend]);
 
   useEffect(() => {
     const initializeAuth = async () => {
@@ -293,7 +295,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     };
 
     initializeAuth();
-  }, []); // Remove dependencies to prevent infinite loops
+  }, [verifyAuthWithBackend]); // Remove dependencies to prevent infinite loops
 
   // Token expiration check (only for JWT)
   useEffect(() => {
