@@ -80,7 +80,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
             name: response.data.data.name,
             ...response.data.data,
           };
-          console.log("Session auth successful");
+
+          console.log("Session auth successful", userData);
           return { isValid: true, user: userData, method: "session" };
         }
       } catch (sessionError: any) {
