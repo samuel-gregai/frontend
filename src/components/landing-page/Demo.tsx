@@ -2,27 +2,23 @@
 import React, { useEffect, useRef } from "react";
 import VoiceOver from "../misc/VoiceOver";
 import gsap from "gsap";
-import RegisterYourInterest from "./RegisterYourInterest";
-
-import { SplitText, ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
 function Demo() {
-  const boxRef = useRef(null);
   useEffect(() => {
     gsap.utils.toArray(".text-in").forEach((el) => {
       gsap.fromTo(
-        el,
+        el as Element,
         { y: 100, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           scrollTrigger: {
-            trigger: el,
+            trigger: el as Element,
             start: "top 80%",
             end: "bottom 20%",
             toggleActions: "play reverse play reverse",
-            // Animation will play when entering and reverse when leaving viewport
           },
           ease: "back",
           duration: 2,

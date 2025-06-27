@@ -13,7 +13,7 @@ function animateFromBottomToTop(target: gsap.TweenTarget) {
       y: 0,
       opacity: 1,
       scrollTrigger: {
-        trigger: target,
+        trigger: target as Element,
         start: "top 80%",
         end: "bottom 20%",
         toggleActions: "play reverse play reverse",
