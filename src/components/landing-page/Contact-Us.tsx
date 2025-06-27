@@ -9,7 +9,7 @@ function ContactUs() {
   //   await handleQueryEmail
   // }
   return (
-    <div className="w-screen h-screen max-w-lg flex flex-col items-start justify-center overflow-hidden pt-12 pb-8 gap-6 px-4 sm:px-6 md:px-8 mx-auto">
+    <div className="w-screen h-[70dvh] max-w-lg flex flex-col items-start justify-center overflow-hidden pt-12 pb-8 gap-6 px-4 sm:px-6 md:px-8 mx-auto">
       <BoxReveal boxColor={"#5046e6"} duration={0.5}>
         <div className="flex flex-col items-start gap-5 text-center">
           <span className="text-2xl xs:text-3xl sm:text-4xl md:text-[2.5rem] lg:text-[3.2rem] font-black tracking-tight leading-tight text-blue-900 dark:text-blue-200 drop-shadow-sm">

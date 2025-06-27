@@ -2,43 +2,51 @@
 import React, { useEffect, useRef } from "react";
 import VoiceOver from "../misc/VoiceOver";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import RegisterYourInterest from "./RegisterYourInterest";
+
+import { SplitText, ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
+
 function Demo() {
-  const addToRef = useRef<HTMLDivElement | null>(null);
+  const boxRef = useRef(null);
   useEffect(() => {
-    if (addToRef.current) {
-      const h2s = addToRef.current.querySelectorAll("h2");
-      gsap.from(h2s, {
-        y: 100,
-        scrollTrigger: {
-          trigger: h2s,
-          toggleActions: "restart reverse none none",
-        },
-        ease: "back",
-        duration: 3,
-        stagger: 0.2,
-      });
-    }
+    gsap.utils.toArray(".text-in").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play reverse play reverse",
+            // Animation will play when entering and reverse when leaving viewport
+          },
+          ease: "back",
+          duration: 2,
+        }
+      );
+    });
   }, []);
+
   return (
-    <div className=" h-screen flex justify-center items-center flex-row px-20">
-      <section
-        className="flex-1 flex items-center flex-col gap-20 min-h-[500px]"
-        ref={addToRef}
-      >
-        <h2 className="heading-three">
+    <div className="h-auto min-h-screen flex flex-col md:flex-row justify-center items-center px-4 md:px-20 gap-20 md:gap-0">
+      <div className="md:flex-1 flex items-center flex-col gap-10 md:gap-20  w-full md:w-auto">
+        <h2 className="text-in text-center md:text-left">
           Let Greg, your AI-powered assistant, handle the admin chaos{" "}
         </h2>
-        <h2 className="heading-three">
+        <h2 className="text-in text-center md:text-left">
           So you can focus on what actually moves the needle: your customers.
         </h2>
-        <h2 className="heading-three">
+        <h2 className="text-in text-center md:text-left">
           Get in line before Greg starts ghosting humans.
           <br />
           Early users get first dibs, feedback perks, and eternal glory.
         </h2>
-      </section>
-      <section className=" flex-1">
+      </div>
+      <section className="flex-1">
         <VoiceOver />
       </section>
     </div>

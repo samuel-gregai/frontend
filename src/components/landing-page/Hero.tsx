@@ -2,42 +2,38 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
+
+function animateFromBottomToTop(target: gsap.TweenTarget) {
+  gsap.fromTo(
+    target,
+    { y: 100, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: target,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play reverse play reverse",
+      },
+      ease: "back",
+      duration: 2,
+    }
+  );
+}
+
 function Hero() {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   useEffect(() => {
-    let titleSplit: any = null;
-    let subtitleSplit: any = null;
     if (titleRef.current) {
-      titleSplit = new SplitText(titleRef.current, { type: "words,chars" });
-      gsap.from(titleSplit.chars, {
-        y: 100,
-        opacity: 0,
-        duration: 2,
-        stagger: 0.05,
-        ease: "bounce.out",
-      });
+      animateFromBottomToTop(titleRef.current);
     }
-
     if (subtitleRef.current) {
-      subtitleSplit = new SplitText(subtitleRef.current, {
-        type: "words,chars",
-      });
-      gsap.from(subtitleSplit.words, {
-        y: 100,
-        opacity: 0,
-        duration: 2,
-        stagger: 0.05,
-        ease: "elastic.inOut",
-      });
+      animateFromBottomToTop(subtitleRef.current);
     }
-    return () => {
-      if (titleSplit) titleSplit.revert();
-      if (subtitleSplit) subtitleSplit.revert();
-    };
   }, []);
   return (
     <div className="flex flex-col items-center justify-center  h-screen relative">
