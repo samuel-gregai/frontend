@@ -3,6 +3,7 @@ import { authInstance } from "@/lib/axios";
 import { UserType } from "@/types";
 
 export function useSessionAuth(setUser: (user: UserType | null) => void, setMethod: (method: "jwt" | "session" | null) => void) {
+  console.log(document.cookie)
   const verifySession = useCallback(async () => {
     try {
         const res = await fetch("https://greg-backend.onrender.com/users/me", {

@@ -36,7 +36,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     localStorage.removeItem("access_token");
     setUser(null);
     setAuthMethod(null);
-    router.push("/auth/signin");
+    router.push("/signin");
   };
 
   return (
