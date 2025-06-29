@@ -79,7 +79,7 @@ export function SignInForm({
       <Card className="overflow-hidden p-0 ">
         <CardContent>
           <Form {...form}>
-            <form className="p-6 md:p-8" onSubmit={form.handleSubmit(onSubmit)}>
+            <form className="p-2 md:p-8" onSubmit={form.handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col items-center text-center">
                   <h1 className="text-2xl font-bold">Welcome back</h1>
@@ -146,7 +146,7 @@ export function SignInForm({
                 />
 
                 {loginError && (
-                  <div className="text-sm text-red-600 bg-red-50 p-3 rounded-md">
+                  <div className="text-sm text-red-600 rounded-md">
                     {loginError}
                   </div>
                 )}
