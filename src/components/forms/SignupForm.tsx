@@ -222,10 +222,7 @@ export function SignUpForm({
                 </div>
                 <div className="text-center text-sm">
                   Already have an account?{" "}
-                  <a
-                    href="/auth/signin"
-                    className="underline underline-offset-4"
-                  >
+                  <a href="/signin" className="underline underline-offset-4">
                     Sign in
                   </a>
                 </div>

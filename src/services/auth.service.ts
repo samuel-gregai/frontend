@@ -84,14 +84,14 @@ export const signinHandler = async (userCredentials: SigninType) => {
   };
 
   export const oauthHandler = async (provider: string) => {
-    // try {
-    //   const response = await fetch(`${baseURL}//${provider}`);
-    //   const data = await response.json()
-      // window.location.href = data.data.redirect_url
-      window.location.href = `${baseURL}/auth/${provider}`
-    // } catch (error) {
-    //   console.error("error during oauth", error)
-    // }
+    try {
+      const response = await fetch(`${baseURL}//${provider}`);
+      const data = await response.json()
+      window.location.href = data.data.redirect_url
+    
+    } catch (error) {
+      console.error("error during oauth", error)
+    }
   
   };
 

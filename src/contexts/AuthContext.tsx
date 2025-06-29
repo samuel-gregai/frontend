@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, createContext, useContext } from "react";
 import { AuthContextType, AuthProviderProps, UserType } from "@/types";
-import { useJwtAuth } from "@/app/hooks/useJWTAuth";
-import { useSessionAuth } from "@/app/hooks/useSessionAuth";
-import { useInitialAuthBootstrap } from "@/app/hooks/useInitialAuthBootstrap";
+import { useJwtAuth } from "@/hooks/useJWTAuth";
+import { useSessionAuth } from "@/hooks/useSessionAuth";
+import { useInitialAuthBootstrap } from "@/hooks/useInitialAuthBootstrap";
 import { useRouter } from "next/navigation";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
