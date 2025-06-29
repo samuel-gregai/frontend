@@ -5,7 +5,7 @@ import { UserType } from "@/types";
 export function useSessionAuth(setUser: (user: UserType | null) => void, setMethod: (method: "jwt" | "session" | null) => void) {
   const verifySession = useCallback(async () => {
     try {
-         const response= await authInstance.get("/users/me", {
+         const response= await authInstance.get("/api/v1/users/me", {
           withCredentials: true,
         });
           if(response.status === 200) return true
