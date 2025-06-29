@@ -85,7 +85,7 @@ export const signinHandler = async (userCredentials: SigninType) => {
 
   export const oauthHandler = async (provider: string) => {
     try {
-      const response = await fetch(`${baseURL}//${provider}`);
+      const response = await fetch(`${baseURL}/${provider}`);
       const data = await response.json()
       window.location.href = data.data.redirect_url
     
