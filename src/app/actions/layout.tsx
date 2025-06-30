@@ -11,7 +11,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      router.replace("/auth/signin");
+      router.replace("/signin");
     }
   }, [isAuthenticated, isLoading, router]);
 

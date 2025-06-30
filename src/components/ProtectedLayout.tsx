@@ -14,7 +14,7 @@ interface ProtectedRouteProps {
 export function ProtectedRoute({
   children,
   requireAuth = true,
-  redirectTo = "/auth/signin",
+  redirectTo = "/signin",
 }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
@@ -59,7 +59,7 @@ export function ProtectedRoute({
 // Higher-order component version
 export function withAuth<P extends object>(
   Component: React.ComponentType<P>,
-  requireAuth: boolean = true,
+  requireAuth: boolean = true
 ) {
   return function AuthenticatedComponent(props: P) {
     return (
