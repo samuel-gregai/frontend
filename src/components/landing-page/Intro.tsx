@@ -5,7 +5,7 @@ import { BoxReveal } from "../magicui/box-reveal";
 function Intro() {
   return (
     <div>
-      <div className="flex flex-col items-center justify-center gap-10  h-screen">
+      <div className="flex flex-col items-center justify-center gap-10  h-[70vh] px-10">
         <HighlightText
           text="Account Management isn't meant to be paper work"
           className="heading-three"
