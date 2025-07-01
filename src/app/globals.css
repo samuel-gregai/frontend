@@ -61,10 +61,10 @@
   }
 }
 
-/* :root {
+:root {
   --radius: 0.625rem;
-  --background: oklch(0.894 0.024 244.7);
-  --foreground: oklch(0.147 0.038 244.7);
+  --background: oklch(0.147 0.038 244.7);
+  --foreground: oklch(0.894 0.024 244.7);
   --card: oklch(0.894 0.024 244.7);
   --card-foreground: oklch(0.147 0.038 244.7);
   --popover: oklch(0.894 0.024 244.7);
@@ -94,7 +94,7 @@
   --sidebar-accent-foreground: oklch(0.147 0.038 244.7);
   --sidebar-border: oklch(0.8 0.02 244.7);
   --sidebar-ring: oklch(0.519 0.183 259.3);
-} */
+}
 
 .dark {
   --background: oklch(0.147 0.038 244.7); /* Dark blue background #000E25 */
