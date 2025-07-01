@@ -23,7 +23,7 @@ function RegisterYourInterest({ id }: RegisterInterestPageProps) {
         </h3>
       </section>
       <div className="flex-1 flex items-center justify-center">
-        <Card className=" flex items-center justify-center mx-auto gap-5 md:min-w-lg">
+        <Card className=" flex items-center justify-center mx-auto gap-5 md:min-w-fit lg:min-w-lg">
           <div className="w-full max-w-md p-4 flex flex-col gap-5">
             <CardHeader>
               <CardTitle>Register your interest</CardTitle>

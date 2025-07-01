@@ -16,7 +16,6 @@ function Navbar() {
     { name: "Contact", link: "contact" },
   ];
 
-  const activeClass = "bg-gray-400 text-black";
   const [toggleMenu, setToggleMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { isAuthenticated, logout, isLoading } = useAuth();
@@ -49,7 +48,7 @@ function Navbar() {
   return (
     <header className="w-full fixed top-0 left-0 z-50 mt-6 ">
       <div className="mx-auto w-full md:w-[90%] lg:w-[75%] px-4">
-        <nav className="flex items-center justify-between py-3 px-4 rounded-3xl backdrop-blur-md bg-white/60 dark:bg-black/30">
+        <nav className="flex items-center justify-between py-3 px-4 rounded-3xl backdrop-blur-md ">
           {/* Left - Logo */}
           <div className="flex-1">
             <p className="font-bold text-lg">
@@ -62,7 +61,10 @@ function Navbar() {
           <div className="hidden md:flex flex-1 justify-center">
             <ul className="flex flex-row gap-8 items-center">
               {navLinks.map((link) => (
-                <li key={link.name} className="hover:cursor-pointer">
+                <li
+                  key={link.name}
+                  className="hover:cursor-pointer whitespace-nowrap"
+                >
                   <ScrollLink
                     to={link.link}
                     smooth={true}
@@ -83,11 +85,14 @@ function Navbar() {
             <div className="hidden md:block">
               {!isLoading &&
                 (isAuthenticated ? (
-                  <Button variant="outline" onClick={logout}>
+                  <Button
+                    className="bg-transparent hover:bg-gray-600"
+                    onClick={logout}
+                  >
                     Sign Out
                   </Button>
                 ) : (
-                  <Button variant="outline" asChild>
+                  <Button className="bg-transparent hover:bg-gray-600" asChild>
                     <a href="/signin">Sign In</a>
                   </Button>
                 ))}
