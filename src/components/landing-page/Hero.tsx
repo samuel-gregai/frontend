@@ -38,17 +38,11 @@ function Hero() {
   return (
     <div className="flex flex-col items-center justify-center  h-screen relative">
       <div className="flex flex-col items-center justify-center gap-5">
-        <p
-          ref={titleRef}
-          className="title tracking-wider font-extrabold text-5xl md:text-8xl text-blue-500 text-center"
-        >
+        <p ref={titleRef} className="heading-one text-blue-500 text-center">
           GREG.
         </p>
 
-        <p
-          ref={subtitleRef}
-          className="tracking-wider font-extrabold text-3xl md:text-5xl text-blue-500 text-center subtitle"
-        >
+        <p ref={subtitleRef} className="heading-two text-blue-500 text-center ">
           Post Sales Reinvented
         </p>
       </div>

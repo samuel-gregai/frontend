@@ -14,7 +14,7 @@ interface RegisterInterestPageProps {
 function RegisterYourInterest({ id }: RegisterInterestPageProps) {
   return (
     <div
-      className="flex flex-col md:flex-row items-center justify-center min-h-screen gap-5 px-4 py-10"
+      className="flex flex-col md:flex-row items-center justify-center md:min-h-screen gap-5 px-4 py-10"
       id={id}
     >
       <section className="flex-1 flex items-center justify-center w-full md:w-auto mb-6 md:mb-0">

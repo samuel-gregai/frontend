@@ -23,8 +23,9 @@ function About({ id }: AboutPageProps) {
             end: "bottom 20%",
             toggleActions: "play reverse play reverse",
           },
-          ease: "back",
+          ease: "elastic",
           duration: 2,
+          stagger: 4,
         }
       );
     });
@@ -36,13 +37,13 @@ function About({ id }: AboutPageProps) {
       id={id}
     >
       <div className="md:flex-1 flex items-center flex-col gap-10 md:gap-20  w-full md:w-auto">
-        <h2 className="text-in text-center md:text-left">
+        <h2 className="text-in heading-three text-center md:text-left">
           Let Greg, your AI-powered assistant, handle the admin chaos{" "}
         </h2>
-        <h2 className="text-in text-center md:text-left">
+        <h2 className="text-in heading-three text-center md:text-left">
           So you can focus on what actually moves the needle: your customers.
         </h2>
-        <h2 className="text-in text-center md:text-left">
+        <h2 className="text-in heading-three text-center md:text-left">
           Get in line before Greg starts ghosting humans.
           <br />
           Early users get first dibs, feedback perks, and eternal glory.
