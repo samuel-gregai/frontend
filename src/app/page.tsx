@@ -9,9 +9,9 @@ export default function Home() {
     <main className="">
       <Hero />
       <Intro />
-      <Demo />
-      <RegisterYourInterest />
-      <ContactUs />
+      <Demo id="about" />
+      <RegisterYourInterest id="register-interest" />
+      <ContactUs id="contact" />
     </main>
   );
 }

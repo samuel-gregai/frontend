@@ -46,7 +46,7 @@ export const BoxReveal = ({
         {children}
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         variants={{
           hidden: { left: 0 },
           visible: { left: "100%" },
@@ -63,7 +63,7 @@ export const BoxReveal = ({
           zIndex: 20,
           background: boxColor,
         }}
-      />
+      /> */}
     </div>
   );
 };

@@ -5,7 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
-function Demo() {
+interface AboutPageProps {
+  id: string;
+}
+function About({ id }: AboutPageProps) {
   useEffect(() => {
     gsap.utils.toArray(".text-in").forEach((el) => {
       gsap.fromTo(
@@ -28,7 +31,10 @@ function Demo() {
   }, []);
 
   return (
-    <div className="h-auto min-h-screen flex flex-col md:flex-row justify-center items-center px-4 md:px-20 gap-20 md:gap-0">
+    <div
+      className="h-auto min-h-screen flex flex-col md:flex-row justify-center items-center px-4 md:px-20 gap-20 md:gap-0"
+      id={id}
+    >
       <div className="md:flex-1 flex items-center flex-col gap-10 md:gap-20  w-full md:w-auto">
         <h2 className="text-in text-center md:text-left">
           Let Greg, your AI-powered assistant, handle the admin chaos{" "}
@@ -49,4 +55,4 @@ function Demo() {
   );
 }
 
-export default Demo;
+export default About;

@@ -4,15 +4,19 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import RegisterYourInterestForm from "../forms/RegisterYourInterestForm";
-
-function RegisterYourInterest() {
+interface RegisterInterestPageProps {
+  id: string;
+}
+function RegisterYourInterest({ id }: RegisterInterestPageProps) {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen gap-5 px-4 py-10">
+    <div
+      className="flex flex-col md:flex-row items-center justify-center min-h-screen gap-5 px-4 py-10"
+      id={id}
+    >
       <section className="flex-1 flex items-center justify-center w-full md:w-auto mb-6 md:mb-0">
         <h3 className="text-center text-2xl md:text-3xl font-semibold">
           Register your interest

@@ -5,14 +5,15 @@ import { gsap } from "gsap";
 import { ModeToggle } from "./ui/mode-toggle";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { Link as ScrollLInk } from "react-scroll";
 import usePathname from "../lib/usePathname";
 import { useAuth } from "@/contexts/AuthContext";
 
 function Navbar() {
   const navLinks = [
-    { name: "About", link: "/about" },
-    { name: "Register  interest", link: "/register-interest" },
-    { name: "Contact", link: "/contact" },
+    { name: "About", link: "about" },
+    { name: "Register  interest", link: "register-interest" },
+    { name: "Contact", link: "contact" },
   ];
   const [toggleMenu, setToggleMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -47,8 +48,8 @@ function Navbar() {
   const navLinkClass = (link: string) =>
     `transition-colors rounded-[8px] p-2 ` +
     (pathname === link
-      ? "bg-black text-white dark:bg-white dark:text-neutral-900"
-      : "hover:text-gray-700 dark:hover:text-gray-300");
+      ? "bg-black text-white dark:bg-white dark:text-neutral-900 hover:cursor-pointer"
+      : "hover:text-gray-700 dark:hover:text-gray-300 hover:cursor-pointer");
 
   return (
     <header className="w-full fixed top-0 left-0 z-50 mt-6 ">
@@ -67,9 +68,13 @@ function Navbar() {
             <ul className="flex flex-row gap-8 items-center">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <a href={link.link} className={navLinkClass(link.link)}>
+                  <ScrollLInk
+                    to={link.link}
+                    smooth={true}
+                    className={navLinkClass(link.link)}
+                  >
                     {link.name}
-                  </a>
+                  </ScrollLInk>
                 </li>
               ))}
             </ul>
@@ -123,13 +128,14 @@ function Navbar() {
         <ul className="flex flex-col gap-6">
           {navLinks.map((link) => (
             <li key={link.name} className="text-3xl">
-              <a
-                href={link.link}
+              <ScrollLInk
+                to={link.link}
+                smooth={true}
                 onClick={() => setToggleMenu(false)}
                 className={navLinkClass(link.link)}
               >
                 {link.name}
-              </a>
+              </ScrollLInk>
             </li>
           ))}
           <li className="text-3xl">
