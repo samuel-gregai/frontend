@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ModeToggle } from "./ui/mode-toggle";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { Link as ScrollLInk } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 import usePathname from "../lib/usePathname";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -15,9 +15,10 @@ function Navbar() {
     { name: "Register  interest", link: "register-interest" },
     { name: "Contact", link: "contact" },
   ];
+
+  const activeClass = "bg-gray-400 text-black";
   const [toggleMenu, setToggleMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
   const { isAuthenticated, logout, isLoading } = useAuth();
 
   useEffect(() => {
@@ -45,12 +46,6 @@ function Navbar() {
     }
   }, [toggleMenu]);
 
-  const navLinkClass = (link: string) =>
-    `transition-colors rounded-[8px] p-2 ` +
-    (pathname === link
-      ? "bg-black text-white dark:bg-white dark:text-neutral-900 hover:cursor-pointer"
-      : "hover:text-gray-700 dark:hover:text-gray-300 hover:cursor-pointer");
-
   return (
     <header className="w-full fixed top-0 left-0 z-50 mt-6 ">
       <div className="mx-auto w-full md:w-[90%] lg:w-[75%] px-4">
@@ -67,23 +62,24 @@ function Navbar() {
           <div className="hidden md:flex flex-1 justify-center">
             <ul className="flex flex-row gap-8 items-center">
               {navLinks.map((link) => (
-                <li key={link.name}>
-                  <ScrollLInk
+                <li key={link.name} className="hover:cursor-pointer">
+                  <ScrollLink
                     to={link.link}
                     smooth={true}
-                    className={navLinkClass(link.link)}
+                    duration={500}
+                    spy={true}
+                    // offset={-70}
+                    activeClass="bg-gray-400 text-black"
+                    className={`px-4 py-2 rounded transition-all duration-300 hover:bg-gray-600 hover:text-black`}
                   >
                     {link.name}
-                  </ScrollLInk>
+                  </ScrollLink>
                 </li>
               ))}
             </ul>
           </div>
           {/* Right - Toggle + Sign In/Out */}
           <div className="flex-1 flex justify-end gap-4 items-center">
-            <div className="hidden md:block">
-              <ModeToggle />
-            </div>
             <div className="hidden md:block">
               {!isLoading &&
                 (isAuthenticated ? (
@@ -99,7 +95,6 @@ function Navbar() {
             {/* Mobile menu trigger */}
             <div className="md:hidden z-[60] relative">
               <div className="flex flex-row gap-3 items-center">
-                <ModeToggle />
                 <ToggleButton
                   isOpen={toggleMenu}
                   onClick={() => setToggleMenu(!toggleMenu)}
@@ -118,7 +113,6 @@ function Navbar() {
         {/* Hamburger at top right */}
         <div className="absolute top-6 right-4 md:right-[10%] lg:right-[25%] z-[80]">
           <div className="flex flex-row gap-3 items-center">
-            <ModeToggle />
             <ToggleButton
               isOpen={toggleMenu}
               onClick={() => setToggleMenu(!toggleMenu)}
@@ -128,14 +122,13 @@ function Navbar() {
         <ul className="flex flex-col gap-6">
           {navLinks.map((link) => (
             <li key={link.name} className="text-3xl">
-              <ScrollLInk
+              <ScrollLink
                 to={link.link}
                 smooth={true}
                 onClick={() => setToggleMenu(false)}
-                className={navLinkClass(link.link)}
               >
                 {link.name}
-              </ScrollLInk>
+              </ScrollLink>
             </li>
           ))}
           <li className="text-3xl">

@@ -9,7 +9,7 @@ interface ContactUsPageProps {
 function ContactUs({ id }: ContactUsPageProps) {
   return (
     <div
-      className="w-screen h-[70dvh] max-w-lg flex flex-col items-start justify-center overflow-hidden pt-12 pb-8 gap-6 px-4 sm:px-6 md:px-8 mx-auto"
+      className="w-screen h-screen max-w-lg flex flex-col items-start justify-center overflow-hidden pt-12 pb-8 gap-6 px-4 sm:px-6 md:px-8 mx-auto"
       id={id}
     >
       <BoxReveal>
