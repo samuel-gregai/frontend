@@ -8,7 +8,7 @@ function Page() {
   const profilePicture = user?.profilePicture;
 
   return (
-    <div className="h-[70] w-screen flex flex-col mt-40">
+    <div className="h-[90] w-screen flex flex-col mt-40">
       <div>
         <p>{`Hello and welcome ${firstName}`}</p>
       </div>
