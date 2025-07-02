@@ -1,3 +1,4 @@
+"use client";
 import Chatbox from "@/components/Chatbox";
 import { useAuth } from "@/contexts/AuthContext";
 function Page() {
