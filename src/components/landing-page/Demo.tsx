@@ -49,7 +49,9 @@ function About({ id }: AboutPageProps) {
           Early users get first dibs, feedback perks, and eternal glory.
         </h2>
       </div>
-      <section className="flex-1">Hello my name is Samuel</section>
+      <section className="flex-1">
+        <VoiceOver />
+      </section>
     </div>
   );
 }
