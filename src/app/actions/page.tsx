@@ -8,9 +8,13 @@ function Page() {
   const profilePicture = user?.profilePicture;
   console.log("userrrrr", user);
   return (
-    <div className="flex justify-end p-2 items-end h-screen">
-      <p>Hello and welcome ${firstName}</p>
-      <Chatbox />
+    <div className="h-screen">
+      <div>
+        <p>{`Hello and welcome ${firstName}`}</p>
+      </div>
+      <div className="flex justify-end p-2 items-end ">
+        <Chatbox />
+      </div>
     </div>
   );
 }
