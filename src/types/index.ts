@@ -16,6 +16,11 @@ type UserType = {
     id: string;
     email: string;
     name?: string;
+    firstName?: string;
+    lastName?: string;
+    profilePicture?: string;
+    username?: string;
+    isEmailVerified?: string;
     [key: string]: any;
   }
 
