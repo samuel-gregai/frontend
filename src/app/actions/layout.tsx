@@ -7,6 +7,7 @@ import type { ReactNode } from "react";
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
+
   const router = useRouter();
 
   useEffect(() => {
