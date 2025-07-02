@@ -6,9 +6,9 @@ function Page() {
   const email = user?.email;
   const firstName = user?.firstName;
   const profilePicture = user?.profilePicture;
-  console.log("userrrrr", user);
+
   return (
-    <div className="h-screen w-screen flex flex-col mt-10">
+    <div className="h-screen w-screen flex flex-col mt-40">
       <div>
         <p>{`Hello and welcome ${firstName}`}</p>
       </div>
