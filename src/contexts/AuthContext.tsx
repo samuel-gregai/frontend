@@ -20,19 +20,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const router = useRouter();
 
   useEffect(() => {
+    console.log("[AuthProvider] Starting auth bootstrap + session check...");
     setIsLoading(true);
-    bootstrap();
+
+    bootstrap(); // You can log inside bootstrap if needed
+
     (async () => {
       const sessionOK = await verifySession();
+      console.log("[AuthProvider] verifySession result:", sessionOK);
+
       if (!sessionOK) {
+        console.log(
+          "[AuthProvider] No valid session found. Resetting auth state."
+        );
         setUser(null);
         setAuthMethod(null);
+      } else {
+        console.log("[AuthProvider] Session verified successfully.");
       }
+
       setIsLoading(false);
     })();
   }, [bootstrap, verifySession]);
 
   const logout = async () => {
+    console.log("[AuthProvider] Logging out...");
     localStorage.removeItem("access_token");
     setUser(null);
     setAuthMethod(null);
