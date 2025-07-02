@@ -8,7 +8,7 @@ export function useSessionAuth(setUser: (user: UserType | null) => void, setMeth
          const response= await authInstance.get("/api/v1/users/me", {
           withCredentials: true,
         });
-          if(response.status === 200) return true
+          // if(response.status === 200) return true
           
       if (response.status === 200 && response.data.data) {
         const userData = {
