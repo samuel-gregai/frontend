@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { RegisterInterestHandler } from "@/services/wait-list.service";
 
 function RegisterYourInterestForm() {
   const [email, setEmail] = useState("");
@@ -15,15 +16,16 @@ function RegisterYourInterestForm() {
     setLoading(true);
     setError("");
     setSuccess(false);
+
     try {
-      const res = await fetch("/api/register-interest", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      if (!res.ok) throw new Error("Failed to send email");
-      setSuccess(true);
-      setEmail("");
+      const response = await RegisterInterestHandler(email);
+
+      if (response.success) {
+        setSuccess(true);
+        setEmail("");
+      } else {
+        setError(response.message || "Registration failed");
+      }
     } catch (err: unknown) {
       setError(
         err instanceof Error && err.message
@@ -50,12 +52,14 @@ function RegisterYourInterestForm() {
             disabled={loading}
           />
 
-          <Button type="submit" className="w-full">
-            Register your interest
+          <Button type="submit" className="w-full" disabled={loading}>
+            {loading ? "Registering..." : "Register your interest"}
           </Button>
         </div>
         {success && (
-          <p className="text-green-600">Check your email for confirmation!</p>
+          <p className="text-green-600">
+            Successfully registered! Check your email for confirmation.
+          </p>
         )}
         {error && <p className="text-red-600">{error}</p>}
       </div>
