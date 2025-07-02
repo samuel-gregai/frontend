@@ -4,6 +4,7 @@ import { AxiosError } from "axios";
 export const RegisterInterestHandler = async (email: string) => {
   try {
     const response = await waitListInstance.post("/api/v1/wait-list/register", { email });
+    console.log("response from auth Service", response)
     if (response.status >= 200 && response.status < 300) {
       return {
         success: true,
