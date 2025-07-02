@@ -4,16 +4,16 @@ import { useAuth } from "@/contexts/AuthContext";
 function Page() {
   const { user } = useAuth();
   const email = user?.email;
-  const firstName = user?.name;
+  const firstName = user?.firstName;
   const profilePicture = user?.profilePicture;
   console.log("userrrrr", user);
   return (
-    <div className="h-screen w-screen flex flex-col">
+    <div className="h-screen w-screen flex flex-col mt-10">
       <div>
         <p>{`Hello and welcome ${firstName}`}</p>
       </div>
       <div className="flex-1 flex items-end justify-end p-4">
-        <div className="bg-primary/80 border-2 border-primary rounded-xl shadow-lg p-3 animate-in fade-in flex items-end justify-end">
+        <div className="shadow-lg p-3 animate-in fade-in flex items-end justify-end">
           <Chatbox />
         </div>
       </div>
