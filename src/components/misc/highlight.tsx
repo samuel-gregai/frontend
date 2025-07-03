@@ -11,21 +11,24 @@ import {
 
 import { cn } from "@/lib/utils";
 
+// ✅ highlight.tsx (update this)
 type HighlightTextProps = HTMLMotionProps<"span"> & {
   text: string;
+  shouldAnimate?: boolean; // 👈 New
   inView?: boolean;
   inViewMargin?: UseInViewOptions["margin"];
   inViewOnce?: boolean;
   transition?: Transition;
 };
 
-function HighlightText({
+export default function HighlightText({
   ref,
   text,
   className,
-  inView = true, // Changed to true by default
+  shouldAnimate,
+  inView = true,
   inViewMargin = "0px",
-  inViewOnce = true, // Made this configurable
+  inViewOnce = true,
   transition = { duration: 2, ease: "easeInOut" },
   ...props
 }: HighlightTextProps) {
@@ -37,8 +40,7 @@ function HighlightText({
     margin: inViewMargin,
   });
 
-  // Fixed logic: only animate when element is in view
-  const shouldAnimate = inView ? inViewResult : true;
+  const animate = shouldAnimate ?? (inView ? inViewResult : true);
 
   return (
     <motion.span
@@ -47,7 +49,7 @@ function HighlightText({
       initial={{
         backgroundSize: "0% 100%",
       }}
-      animate={shouldAnimate ? { backgroundSize: "100% 100%" } : undefined}
+      animate={animate ? { backgroundSize: "100% 100%" } : undefined}
       transition={transition}
       style={{
         backgroundRepeat: "no-repeat",
@@ -64,6 +66,3 @@ function HighlightText({
     </motion.span>
   );
 }
-
-export { HighlightText, type HighlightTextProps };
-export default HighlightText;
