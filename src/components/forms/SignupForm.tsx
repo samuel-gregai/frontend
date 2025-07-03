@@ -55,7 +55,6 @@ export function SignUpForm({
       setSuccessMessage("");
 
       const response = await signupHandler(userCredentials);
-      console.log(response);
 
       if (response.success) {
         signup(response.data.data.token);

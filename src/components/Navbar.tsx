@@ -2,11 +2,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import ToggleButton from "./misc/AnimatedHamburger";
 import { gsap } from "gsap";
-import { ModeToggle } from "./ui/mode-toggle";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
-import usePathname from "../lib/usePathname";
 import { useAuth } from "@/contexts/AuthContext";
 
 function Navbar() {

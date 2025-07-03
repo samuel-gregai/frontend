@@ -9,8 +9,6 @@ export function useSessionAuth(setUser: (user: UserType | null) => void, setMeth
         withCredentials: true,
       });
   
-      console.log("Session auth response:", response); // 🔍 LOG
-  
       if (response.status === 200 && response.data?.data) {
         const userData = {
           id: response.data.data.id || response.data.data.sub,
@@ -18,7 +16,6 @@ export function useSessionAuth(setUser: (user: UserType | null) => void, setMeth
           name: response.data.data.name,
           ...response.data.data,
         };
-        console.log("Setting userData:", userData); // 🔍 LOG
         setUser(userData);
         setMethod("session");
         return true;

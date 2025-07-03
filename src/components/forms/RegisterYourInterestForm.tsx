@@ -18,10 +18,8 @@ function RegisterYourInterestForm() {
     setLoading(true);
     setError("");
     setSuccess(false);
-
     try {
       const response = await RegisterInterestHandler(email);
-      console.log("response from the UI", response);
       if (response.success) {
         setSuccess(true);
         setSuccessMessage(response.data.message);
@@ -42,7 +40,6 @@ function RegisterYourInterestForm() {
       setLoading(false);
     }
   }
-  console.log(error);
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-col gap-6">

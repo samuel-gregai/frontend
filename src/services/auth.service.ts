@@ -51,7 +51,6 @@ export const signinHandler = async (userCredentials: SigninType) => {
       const response = await authInstance.post("/api/v1/auth/register", userCredentials);
   
       if (response.status === 200 || response.status === 201) {
-        console.log(response.data)
         return {
           success: true,
           message: response.data?.message || "Signup successful",
