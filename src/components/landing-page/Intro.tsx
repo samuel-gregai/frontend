@@ -12,20 +12,32 @@ function Intro() {
 
   const [showSecond, setShowSecond] = useState(false);
   const [secondHighlightReady, setSecondHighlightReady] = useState(false);
+  const [firstHighlightReady, setFirstHighlightReady] = useState(false);
 
   useEffect(() => {
     if (isFirstInView) {
-      setShowSecond(true);
+      // Start first highlight immediately when in view
+      setFirstHighlightReady(true);
     }
   }, [isFirstInView]);
 
+  useEffect(() => {
+    if (firstHighlightReady) {
+      // Wait for first highlight to finish (2s duration) before starting second
+      setTimeout(() => {
+        setShowSecond(true);
+      }, 2000);
+    }
+  }, [firstHighlightReady]);
+
   return (
     <div className="flex flex-col items-center justify-center gap-10 min-h-[70vh] px-10 overflow-hidden">
-      {/* FIRST Highlight (triggered normally) */}
+      {/* FIRST Highlight (triggered normally but delayed) */}
       <HighlightText
         ref={firstRef}
         text="Account Management isn't meant to be paper work"
         className="heading-three"
+        shouldAnimate={firstHighlightReady}
         transition={{ duration: 2 }}
       />
 
