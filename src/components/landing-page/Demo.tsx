@@ -77,7 +77,7 @@ function About({ id }: AboutPageProps) {
         ref={pinRef}
         className="h-screen flex flex-col md:flex-row justify-center items-center px-4 md:px-20 gap-20 md:gap-0"
       >
-        <div className="md:flex-1 flex items-center flex-col gap-10 md:gap-20 w-full md:w-auto">
+        <div className="md:flex-1 flex flex-col gap-10 md:gap-20 w-full md:w-auto">
           {[
             "Let Greg, your AI-powered assistant, handle the admin chaos",
             "So you can focus on what actually moves the needle: your customers.",
@@ -85,7 +85,7 @@ function About({ id }: AboutPageProps) {
           ].map((text, i) => (
             <h2
               key={i}
-              className="text-in heading-three text-center md:text-left"
+              className="text-in heading-four text-left"
               ref={(el) => {
                 if (el) textRefs.current[i] = el;
               }}
@@ -94,7 +94,7 @@ function About({ id }: AboutPageProps) {
             </h2>
           ))}
         </div>
-        <section className="flex-1" ref={voiceRef}>
+        <section className="flex-1">
           <VoiceOver />
         </section>
       </div>

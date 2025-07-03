@@ -157,7 +157,9 @@
   .heading-three {
     @apply text-2xl md:text-3xl font-semibold;
   }
-
+  .heading-four {
+    @apply text-xl md:text-2xl font-semibold;
+  }
   .normal {
     @apply font-medium;
   }
