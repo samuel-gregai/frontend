@@ -94,7 +94,7 @@ function About({ id }: AboutPageProps) {
             </h2>
           ))}
         </div>
-        <section className="flex-1">
+        <section className="flex-1 pointer-events-none">
           <VoiceOver />
         </section>
       </div>
