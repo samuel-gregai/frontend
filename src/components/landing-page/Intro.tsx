@@ -1,59 +1,65 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import HighlightText from "../misc/highlight";
-import { motion, useInView } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 
 function Intro() {
-  const firstRef = useRef(null);
-  const isFirstInView = useInView(firstRef, {
-    margin: "-50% 0px -50% 0px",
-    once: true,
+  const sectionRef = useRef(null);
+  const [firstHighlightReady, setFirstHighlightReady] = useState(false);
+  const [secondHighlightReady, setSecondHighlightReady] = useState(false);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
   });
 
-  const [showSecond, setShowSecond] = useState(false);
-  const [secondHighlightReady, setSecondHighlightReady] = useState(false);
-  const [firstHighlightReady, setFirstHighlightReady] = useState(false);
+  // First container scrolls out on exit
+  const containerY = useTransform(scrollYProgress, [0.8, 1], ["0%", "-100%"]);
 
-  useEffect(() => {
-    if (isFirstInView) {
-      // Start first highlight immediately when in view
+  // Second highlight slides in from below and fades in
+  const secondY = useTransform(scrollYProgress, [0.4, 0.7], ["100vh", "0vh"]);
+  const secondOpacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
+
+  // Trigger first highlight when pinned
+  useMotionValueEvent(scrollYProgress, "change", (value) => {
+    if (value > 0.1 && !firstHighlightReady) {
       setFirstHighlightReady(true);
     }
-  }, [isFirstInView]);
 
-  useEffect(() => {
-    if (firstHighlightReady) {
-      // Wait for first highlight to finish (2s duration) before starting second
-      setTimeout(() => {
-        setShowSecond(true);
-      }, 2000);
+    // Trigger second highlight ONLY when it has fully reached destination
+    if (value > 0.7 && !secondHighlightReady) {
+      setSecondHighlightReady(true);
     }
-  }, [firstHighlightReady]);
+  });
 
   return (
-    <div className="flex flex-col items-center justify-center gap-10 min-h-[70vh] px-10 overflow-hidden">
-      {/* FIRST Highlight (triggered normally but delayed) */}
-      <HighlightText
-        ref={firstRef}
-        text="Account Management isn't meant to be paper work"
-        className="heading-three"
-        shouldAnimate={firstHighlightReady}
-        transition={{ duration: 2 }}
-      />
-
-      {/* SECOND Highlight (waits for slide to finish) */}
+    <div ref={sectionRef} className="relative h-[300vh]">
       <motion.div
-        initial={{ y: "100vh", opacity: 0 }}
-        animate={showSecond ? { y: 0, opacity: 1 } : {}}
-        transition={{ ease: "easeOut", duration: 2 }}
-        onAnimationComplete={() => setSecondHighlightReady(true)} // 👈 This is the key!
+        className="sticky top-0 h-screen flex flex-col items-center justify-center gap-10 px-10"
+        style={{ y: containerY }}
       >
+        {/* First Highlight */}
         <HighlightText
-          text="Yet... We spend 50% of our time doing it"
+          text="Account Management isn't meant to be paper work"
           className="heading-three"
-          shouldAnimate={secondHighlightReady} // 👈 Controlled!
+          shouldAnimate={firstHighlightReady}
           transition={{ duration: 2 }}
         />
+
+        {/* Second Highlight — only animates when fully arrived */}
+        <motion.div style={{ y: secondY, opacity: secondOpacity }}>
+          <HighlightText
+            text="Yet... We spend 50% of our time doing it"
+            className="heading-three"
+            shouldAnimate={secondHighlightReady}
+            transition={{ duration: 2 }}
+          />
+        </motion.div>
       </motion.div>
     </div>
   );
