@@ -20,8 +20,8 @@ function Navbar() {
   const { isAuthenticated, logout, isLoading } = useAuth();
   const pathname = usePathname();
 
-  // Check if we're on auth pages
-  const isAuthPage = pathname === "/signin" || pathname === "/signup";
+  // Check if we're on home page
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     if (!menuRef.current) return;
@@ -60,8 +60,9 @@ function Navbar() {
               </Link>
             </p>
           </div>
-          {/* Center - Nav Links (hidden on auth pages) */}
-          {!isAuthPage && (
+
+          {/* Center - Nav Links (only show on home page) */}
+          {isHomePage && (
             <div className="hidden md:flex flex-1 justify-center">
               <ul className="flex flex-row gap-8 items-center">
                 {navLinks.map((link) => (
@@ -85,6 +86,7 @@ function Navbar() {
               </ul>
             </div>
           )}
+
           {/* Right - Toggle + Sign In/Out */}
           <div className="flex-1 flex justify-end gap-4 items-center">
             <div className="hidden md:block">
@@ -102,8 +104,9 @@ function Navbar() {
                   </Button>
                 ))}
             </div>
-            {/* Mobile menu trigger (hidden on auth pages) */}
-            {!isAuthPage && (
+
+            {/* Mobile menu trigger (only show on home page) */}
+            {isHomePage && (
               <div className="md:hidden z-[60] relative">
                 <div className="flex flex-row gap-3 items-center">
                   <ToggleButton
@@ -116,8 +119,9 @@ function Navbar() {
           </div>
         </nav>
       </div>
-      {/* Mobile Menu Overlay (hidden on auth pages) */}
-      {!isAuthPage && (
+
+      {/* Mobile Menu Overlay (only show on home page) */}
+      {isHomePage && (
         <div
           ref={menuRef}
           className="md:hidden fixed inset-0 h-dvh bg-white/50 backdrop-blur-3xl shadow-lg z-[70] flex-col items-center justify-center"
