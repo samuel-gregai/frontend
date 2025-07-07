@@ -38,7 +38,7 @@ function Intro() {
   });
 
   return (
-    <div ref={sectionRef} className="relative h-[200vh]">
+    <div ref={sectionRef} className="relative h-[300vh]">
       <motion.div
         className="sticky top-0 h-screen flex flex-col items-center justify-center gap-10 px-10"
         style={{ y: containerY }}
