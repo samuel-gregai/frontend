@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { signupHandler } from "@/services/auth.service";
+import { oauthHandler, signupHandler } from "@/services/auth.service";
 import { LoadingSpinner } from "../ui/loading-spinner";
 
 export function SignUpForm({
@@ -212,6 +212,7 @@ export function SignUpForm({
                     type="button"
                     className="w-full"
                     disabled={isLoading}
+                    onClick={() => oauthHandler("google")}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <path
