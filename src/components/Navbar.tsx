@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
 import { useAuth } from "@/contexts/AuthContext";
+import { usePathname } from "next/navigation";
 
 function Navbar() {
   const navLinks = [
@@ -17,6 +18,10 @@ function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { isAuthenticated, logout, isLoading } = useAuth();
+  const pathname = usePathname();
+
+  // Check if we're on auth pages
+  const isAuthPage = pathname === "/signin" || pathname === "/signup";
 
   useEffect(() => {
     if (!menuRef.current) return;
@@ -55,29 +60,31 @@ function Navbar() {
               </Link>
             </p>
           </div>
-          {/* Center - Nav Links */}
-          <div className="hidden md:flex flex-1 justify-center">
-            <ul className="flex flex-row gap-8 items-center">
-              {navLinks.map((link) => (
-                <li
-                  key={link.name}
-                  className="hover:cursor-pointer whitespace-nowrap"
-                >
-                  <ScrollLink
-                    to={link.link}
-                    smooth={true}
-                    duration={500}
-                    spy={true}
-                    // offset={-70}
-                    activeClass="bg-gray-400 text-black"
-                    className={`px-4 py-2 rounded transition-all duration-300 hover:bg-gray-600 hover:text-black`}
+          {/* Center - Nav Links (hidden on auth pages) */}
+          {!isAuthPage && (
+            <div className="hidden md:flex flex-1 justify-center">
+              <ul className="flex flex-row gap-8 items-center">
+                {navLinks.map((link) => (
+                  <li
+                    key={link.name}
+                    className="hover:cursor-pointer whitespace-nowrap"
                   >
-                    {link.name}
-                  </ScrollLink>
-                </li>
-              ))}
-            </ul>
-          </div>
+                    <ScrollLink
+                      to={link.link}
+                      smooth={true}
+                      duration={500}
+                      spy={true}
+                      // offset={-70}
+                      activeClass="bg-gray-400 text-black"
+                      className={`px-4 py-2 rounded transition-all duration-300 hover:bg-gray-600 hover:text-black`}
+                    >
+                      {link.name}
+                    </ScrollLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {/* Right - Toggle + Sign In/Out */}
           <div className="flex-1 flex justify-end gap-4 items-center">
             <div className="hidden md:block">
@@ -95,67 +102,71 @@ function Navbar() {
                   </Button>
                 ))}
             </div>
-            {/* Mobile menu trigger */}
-            <div className="md:hidden z-[60] relative">
-              <div className="flex flex-row gap-3 items-center">
-                <ToggleButton
-                  isOpen={toggleMenu}
-                  onClick={() => setToggleMenu(!toggleMenu)}
-                />
+            {/* Mobile menu trigger (hidden on auth pages) */}
+            {!isAuthPage && (
+              <div className="md:hidden z-[60] relative">
+                <div className="flex flex-row gap-3 items-center">
+                  <ToggleButton
+                    isOpen={toggleMenu}
+                    onClick={() => setToggleMenu(!toggleMenu)}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </nav>
       </div>
-      {/* Mobile Menu Overlay */}
-      <div
-        ref={menuRef}
-        className="md:hidden fixed inset-0 h-dvh bg-white/50 backdrop-blur-3xl shadow-lg z-[70] flex-col items-center justify-center"
-        style={{ display: "none" }}
-      >
-        {/* Hamburger at top right */}
-        <div className="absolute top-6 right-4 md:right-[10%] lg:right-[25%] z-[80]">
-          <div className="flex flex-row gap-3 items-center">
-            <ToggleButton
-              isOpen={toggleMenu}
-              onClick={() => setToggleMenu(!toggleMenu)}
-            />
+      {/* Mobile Menu Overlay (hidden on auth pages) */}
+      {!isAuthPage && (
+        <div
+          ref={menuRef}
+          className="md:hidden fixed inset-0 h-dvh bg-white/50 backdrop-blur-3xl shadow-lg z-[70] flex-col items-center justify-center"
+          style={{ display: "none" }}
+        >
+          {/* Hamburger at top right */}
+          <div className="absolute top-6 right-4 md:right-[10%] lg:right-[25%] z-[80]">
+            <div className="flex flex-row gap-3 items-center">
+              <ToggleButton
+                isOpen={toggleMenu}
+                onClick={() => setToggleMenu(!toggleMenu)}
+              />
+            </div>
           </div>
-        </div>
-        <ul className="flex flex-col gap-6">
-          {navLinks.map((link) => (
-            <li key={link.name} className="text-3xl">
-              <ScrollLink
-                to={link.link}
-                smooth={true}
-                onClick={() => setToggleMenu(false)}
-              >
-                {link.name}
-              </ScrollLink>
-            </li>
-          ))}
-          <li className="text-3xl">
-            {!isLoading &&
-              (isAuthenticated ? (
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setToggleMenu(false);
-                    logout();
-                  }}
+          <ul className="flex flex-col gap-6">
+            {navLinks.map((link) => (
+              <li key={link.name} className="text-3xl">
+                <ScrollLink
+                  to={link.link}
+                  smooth={true}
+                  onClick={() => setToggleMenu(false)}
                 >
-                  Sign Out
-                </Button>
-              ) : (
-                <Button variant="outline" asChild>
-                  <a href="/signin" onClick={() => setToggleMenu(false)}>
-                    Sign In
-                  </a>
-                </Button>
-              ))}
-          </li>
-        </ul>
-      </div>
+                  {link.name}
+                </ScrollLink>
+              </li>
+            ))}
+            <li className="text-3xl">
+              {!isLoading &&
+                (isAuthenticated ? (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setToggleMenu(false);
+                      logout();
+                    }}
+                  >
+                    Sign Out
+                  </Button>
+                ) : (
+                  <Button variant="outline" asChild>
+                    <a href="/signin" onClick={() => setToggleMenu(false)}>
+                      Sign In
+                    </a>
+                  </Button>
+                ))}
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 }
