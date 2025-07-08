@@ -7,6 +7,8 @@ import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
 import { useAuth } from "@/contexts/AuthContext";
 import { usePathname } from "next/navigation";
+import { logoutHandler } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
 
 function Navbar() {
   const navLinks = [
@@ -17,11 +19,19 @@ function Navbar() {
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
   const { isAuthenticated, logout, isLoading } = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
 
   // Check if we're on home page
   const isHomePage = pathname === "/";
+
+  const handleLogout = async () => {
+    await logoutHandler();
+    logout();
+    router.push("/signin");
+  };
 
   useEffect(() => {
     if (!menuRef.current) return;
@@ -94,7 +104,7 @@ function Navbar() {
                 (isAuthenticated ? (
                   <Button
                     className="bg-transparent hover:bg-gray-600"
-                    onClick={logout}
+                    onClick={handleLogout}
                   >
                     Sign Out
                   </Button>
@@ -103,6 +113,7 @@ function Navbar() {
                     <a href="/signin">Sign In</a>
                   </Button>
                 ))}
+              {/* <Button onClick={handleLogout}>Signout</Button> */}
             </div>
 
             {/* Mobile menu trigger (only show on home page) */}
