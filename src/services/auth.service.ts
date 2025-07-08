@@ -82,14 +82,9 @@ export const signinHandler = async (userCredentials: SigninType) => {
   };
 
 export const logoutHandler = async () => {
-  console.log("logoutHandler function called"); 
   try {
     const access_token = localStorage.getItem("access_token"); 
-    console.log("access_token:", access_token);
-    
     const response = await authInstance.post("/api/v1/auth/logout", { access_token }); 
-    console.log("logout response:", response); 
-    
     if (response.status === 200 || response.status === 201) {
       return {
         success: true,
