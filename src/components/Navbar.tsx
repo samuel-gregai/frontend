@@ -9,6 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { usePathname } from "next/navigation";
 import { logoutHandler } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
+import Logout from "./Logout";
 
 function Navbar() {
   const navLinks = [
@@ -102,12 +103,7 @@ function Navbar() {
             <div className="hidden md:block">
               {!isLoading &&
                 (isAuthenticated ? (
-                  <Button
-                    className="bg-transparent hover:bg-gray-600"
-                    onClick={handleLogout}
-                  >
-                    Sign Out
-                  </Button>
+                  <Logout />
                 ) : (
                   <Button className="bg-transparent hover:bg-gray-600" asChild>
                     <a href="/signin">Sign In</a>
