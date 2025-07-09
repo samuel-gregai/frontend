@@ -22,6 +22,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { LoadingSpinner } from "../ui/loading-spinner";
+import Link from "next/link";
 
 export function SignInForm({
   className,
@@ -122,20 +123,30 @@ export function SignInForm({
                             {...field}
                             placeholder="Password"
                           />
-                          <div className="flex items-center space-x-2">
-                            <Checkbox
-                              id="show-password"
-                              checked={showPassword}
-                              onCheckedChange={() =>
-                                setShowPassword(!showPassword)
-                              }
-                            />
-                            <label
-                              htmlFor="show-password"
-                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                              Show password
-                            </label>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-2">
+                              <Checkbox
+                                id="show-password"
+                                checked={showPassword}
+                                onCheckedChange={() =>
+                                  setShowPassword(!showPassword)
+                                }
+                              />
+                              <label
+                                htmlFor="show-password"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Show password
+                              </label>
+                            </div>
+                            <div>
+                              <Link
+                                href="/forgot-password"
+                                className="hover:text-blue-400"
+                              >
+                                forgot password?
+                              </Link>
+                            </div>
                           </div>
                         </div>
                       </FormControl>

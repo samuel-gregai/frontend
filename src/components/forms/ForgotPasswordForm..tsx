@@ -1,6 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -45,6 +47,10 @@ function ForgotPasswordForm() {
   };
 
   const timer = usePersistTimer();
+  const router = useRouter();
+  const handleCancelAction = () => {
+    router.push("/signin");
+  };
   return (
     <Form {...form}>
       <form
@@ -69,14 +75,20 @@ function ForgotPasswordForm() {
             </FormItem>
           )}
         ></FormField>
-        <div>
+        {/* <div>
           <span className="text-gray-500">
             Didn't receive email? Resend in {timer}
           </span>
-        </div>
-        <Button disabled={isSubmitting}>
+        </div> */}
+        <Button disabled={isSubmitting} className="hover:cursor-pointer">
           {isSubmitting ? <LoadingSpinner /> : "Submit"}
         </Button>
+        {/* <Button
+          className="bg-red-300 hover:bg-red-500 hover:cursor-pointer"
+          onClick={handleCancelAction}
+        >
+          Cancel
+        </Button> */}
       </form>
     </Form>
   );
