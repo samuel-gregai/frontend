@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -47,10 +45,6 @@ function ForgotPasswordForm() {
   };
 
   const timer = usePersistTimer();
-  const router = useRouter();
-  const handleCancelAction = () => {
-    router.push("/signin");
-  };
   return (
     <Form {...form}>
       <form
