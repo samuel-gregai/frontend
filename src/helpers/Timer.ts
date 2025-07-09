@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const TIMER_DURATION = 60_000; // 1 minute
+const TIMER_DURATION = 60_000; 
 const STORAGE_KEY = "my-app-timer-start";
 
 function usePersistTimer() {
@@ -11,7 +11,7 @@ function usePersistTimer() {
     const storedStart = localStorage.getItem(STORAGE_KEY);
     const startTime = storedStart ? parseInt(storedStart, 10) : Date.now();
 
-    // If there's no start time, set one
+  
     if (!storedStart) {
       localStorage.setItem(STORAGE_KEY, startTime.toString());
     }
@@ -30,7 +30,7 @@ function usePersistTimer() {
     return () => clearInterval(interval);
   }, []);
 
-  return Math.ceil(remainingTime / 1000); // return seconds
+  return Math.ceil(remainingTime / 1000); 
 }
 
 export default usePersistTimer;

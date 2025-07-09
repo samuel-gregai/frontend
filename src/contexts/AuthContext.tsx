@@ -22,7 +22,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     setIsLoading(true);
 
-    bootstrap(); // You can log inside bootstrap if needed
+    bootstrap();
 
     (async () => {
       const sessionOK = await verifySession();

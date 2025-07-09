@@ -1,10 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { logoutHandler } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import Spinner from "./ui/spinner";
+import { toast } from "sonner";
 function Logout() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -15,8 +16,11 @@ function Logout() {
     try {
       setIsLoading(true);
       const response = await logoutHandler();
-      console.log(response);
-      if (response.success) setSuccessMessage(response.data?.message);
+      if (response.success) {
+        toast.success(response.data?.message || "Logout successful");
+      } else {
+        toast.error(response?.data?.message);
+      }
       logout();
       router.push("/signin");
       setIsLoading(false);
