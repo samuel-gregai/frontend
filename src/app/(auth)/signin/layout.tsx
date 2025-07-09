@@ -23,14 +23,13 @@ export default function AuthLayout({
       <div className="w-screen h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900 mx-auto mb-4"></div>
-          <p>Checking authentication...</p>
         </div>
       </div>
     );
   }
 
   if (isAuthenticated && user) {
-    return null; // ✅ Let redirect happen
+    return null;
   }
 
   return <>{children}</>;
