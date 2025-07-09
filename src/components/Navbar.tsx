@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { logoutHandler } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import Logout from "./Logout";
+import Image from "next/image";
 
 function Navbar() {
   const navLinks = [
@@ -21,18 +22,12 @@ function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const { isAuthenticated, logout, isLoading } = useAuth();
+  const { isAuthenticated, logout, isLoading, user } = useAuth();
+  const profilePicture = user?.profilePicture;
   const pathname = usePathname();
-  const router = useRouter();
 
   // Check if we're on home page
   const isHomePage = pathname === "/";
-
-  const handleLogout = async () => {
-    await logoutHandler();
-    logout();
-    router.push("/signin");
-  };
 
   useEffect(() => {
     if (!menuRef.current) return;
@@ -100,16 +95,30 @@ function Navbar() {
 
           {/* Right - Toggle + Sign In/Out */}
           <div className="flex-1 flex justify-end gap-4 items-center">
-            <div className="hidden md:block">
+            <div className="hidden md:flex flex-row gap-5">
               {!isLoading &&
-                (isAuthenticated ? (
+                (isAuthenticated && !isHomePage ? (
                   <Logout />
-                ) : (
+                ) : isAuthenticated && isHomePage ? (
                   <Button className="bg-transparent hover:bg-gray-600" asChild>
-                    <a href="/signin">Sign In</a>
+                    <a href="/actions">Chat with Greg</a>
+                  </Button>
+                ) : (
+                  <Button className="bg-transparent hover:bg-gray-600">
+                    <a href="/signin">Sign in</a>
                   </Button>
                 ))}
-              {/* <Button onClick={handleLogout}>Signout</Button> */}
+              {profilePicture && !isHomePage && (
+                <div>
+                  <Image
+                    src={profilePicture}
+                    alt="profile-photo"
+                    width={30}
+                    height={30}
+                    className=" rounded-full"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Mobile menu trigger (only show on home page) */}

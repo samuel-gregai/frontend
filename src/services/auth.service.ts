@@ -119,4 +119,23 @@ export const logoutHandler = async () => {
     window.location.href = `${baseURL}/api/v1/auth/login/${provider}`
   };
 
-  
+export const forgotPasswordHandler = async (email:Pick<SigninType, "email">) => {
+  try {
+    const response = await authInstance.post("/api/v1/auth/forgot-password", email)
+    if (response.status === 200 || response.status === 201) {
+      return {
+        success: true,
+        message: response.data?.message || "Kindly check your email for password reset link",
+        data: response.data,
+      };
+    }
+
+    return {
+      success: false,
+      message: "Unexpected server response.",
+    };
+
+  } catch (error) {
+    
+  }
+}
