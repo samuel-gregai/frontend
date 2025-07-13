@@ -7,11 +7,11 @@ import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
 import { useAuth } from "@/contexts/AuthContext";
 import { usePathname } from "next/navigation";
-import { logoutHandler } from "@/services/auth.service";
-import { useRouter } from "next/navigation";
 import Logout from "./Logout";
 import Image from "next/image";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import SignInButton from "./auth/signin";
+import SignOutButton from "./auth/signout";
 function Navbar() {
   const navLinks = [
     { name: "About", link: "about" },
@@ -22,8 +22,8 @@ function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const { isAuthenticated, logout, isLoading, user } = useAuth();
-  const profilePicture = user?.profilePicture;
+  const { isAuthenticated, user, isLoading } = useAuth0();
+  const profilePicture = user?.picture;
   const pathname = usePathname();
 
   // Check if we're on home page
@@ -95,18 +95,16 @@ function Navbar() {
 
           {/* Right - Toggle + Sign In/Out */}
           <div className="flex-1 flex justify-end gap-4 items-center">
-            <div className="hidden md:flex flex-row gap-5">
+            <div className="hidden md:flex flex-row gap-5 items-center justify-center">
               {!isLoading &&
                 (isAuthenticated && !isHomePage ? (
-                  <Logout />
+                  <SignOutButton />
                 ) : isAuthenticated && isHomePage ? (
                   <Button className="bg-transparent hover:bg-gray-600" asChild>
                     <a href="/actions">Chat with Greg</a>
                   </Button>
                 ) : (
-                  <Button className="bg-transparent hover:bg-gray-600">
-                    <a href="/signin">Sign in</a>
-                  </Button>
+                  <SignInButton />
                 ))}
               {profilePicture && !isHomePage && (
                 <div>
@@ -167,15 +165,7 @@ function Navbar() {
             <li className="text-3xl">
               {!isLoading &&
                 (isAuthenticated ? (
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setToggleMenu(false);
-                      logout();
-                    }}
-                  >
-                    Sign Out
-                  </Button>
+                  <SignOutButton />
                 ) : (
                   <Button variant="outline" asChild>
                     <a href="/signin" onClick={() => setToggleMenu(false)}>

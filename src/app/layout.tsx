@@ -3,9 +3,8 @@ import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/sonner";
-
+import ClientAuthProvider from "./providers/ClientAuthProvider";
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["500", "700", "800"],
@@ -30,12 +29,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Toaster richColors />
-          <AuthProvider>
+          <ClientAuthProvider>
             <header>
               <Navbar />
             </header>
             {children}
-          </AuthProvider>
+          </ClientAuthProvider>
         </ThemeProvider>
       </body>
     </html>

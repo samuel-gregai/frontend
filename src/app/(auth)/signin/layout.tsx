@@ -13,6 +13,7 @@ export default function AuthLayout({
   const router = useRouter();
 
   useEffect(() => {
+    console.log(isAuthenticated);
     if (!isLoading && isAuthenticated && user) {
       router.replace("/actions");
     }

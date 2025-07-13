@@ -1,3 +1,5 @@
+import { base64UrlToBase64 } from "@/helpers/convertBase64UrlToBase64";
+
 interface JWTPayload {
     exp: number;
     iat: number;
@@ -13,8 +15,8 @@ export function decodeJWT(token: string): JWTPayload | null {
         if (parts.length !== 3) {
             return null;
         }
-        
-        const payload = JSON.parse(atob(parts[1]));
+        const tokenToBase64 = base64UrlToBase64(parts[1])
+        const payload = JSON.parse(atob(tokenToBase64));
         return payload;
     } catch (error) {
         console.error("Invalid JWT format", error);

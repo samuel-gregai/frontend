@@ -20,7 +20,7 @@ type UserType = {
     lastName?: string;
     profilePicture?: string;
     username?: string;
-    isEmailVerified?: string;
+    isEmailVerified?: boolean;
     [key: string]: any;
   }
 
