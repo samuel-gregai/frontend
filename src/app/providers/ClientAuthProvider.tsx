@@ -1,8 +1,8 @@
 "use client";
 import { Auth0Provider } from "@auth0/auth0-react";
 
-const domain = process.env.AUTH0_DOMAIN;
-const clientId = process.env.AUTH0_CLIENT_ID;
+const domain = process.env.NEXT_PUBLIC_AUTH0_DOMAIN;
+const clientId = process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID;
 
 export default function ClientAuthProvider({
   children,
