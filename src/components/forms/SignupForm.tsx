@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { signupSchema } from "@/schemas";
 import { SignupType } from "@/types";
-import { useAuth } from "@/contexts/AuthContext";
 import {
   Form,
   FormControl,
@@ -46,7 +45,6 @@ export function SignUpForm({
   });
 
   const router = useRouter();
-  const { signup } = useAuth();
 
   const onSubmit = async (userCredentials: SignupType) => {
     try {
@@ -57,7 +55,6 @@ export function SignUpForm({
       const response = await signupHandler(userCredentials);
 
       if (response.success) {
-        signup(response.data.data.token);
         setSuccessMessage(response.message);
         setIsSuccess(true);
         router.push("/actions"); // Redirect to /actions after successful signup

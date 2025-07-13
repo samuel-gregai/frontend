@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { signinSchema } from "@/schemas";
 import { SigninType } from "@/types";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   Form,
   FormControl,
@@ -32,7 +32,6 @@ export function SignInForm({
   const [loginError, setLoginError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { login } = useAuth();
   const router = useRouter();
 
   const form = useForm<SigninType>({
@@ -51,7 +50,6 @@ export function SignInForm({
       const response = await signinHandler(userCredentials);
 
       if (response.success && response.data?.data?.token) {
-        login(response.data.data.token);
         toast.success(response.message || "Login successful");
         router.push("/actions");
       } else {
