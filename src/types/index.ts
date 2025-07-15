@@ -13,12 +13,16 @@ type SignupType = {
 }
 
 type UserType = {
-    id: string;
-    email: string;
+    id?: string;
+    email?: string;
     name?: string;
     firstName?: string;
+    family_name?: string;
+    given_name?: string;
+    emailIsVerified?: boolean;
+    nickname?: string;
     lastName?: string;
-    profilePicture?: string;
+    picture?: string;
     username?: string;
     isEmailVerified?: boolean;
     [key: string]: any;
