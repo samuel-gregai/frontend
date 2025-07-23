@@ -164,3 +164,22 @@
     @apply font-medium;
   }
 }
+
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2); /* light thumb */
+  border-radius: 9999px;
+  border: 2px solid transparent;
+}
+
+.scroll-thin {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}

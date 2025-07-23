@@ -1,0 +1,1 @@
+export const navlinks = [{link: "/customers", label: "Customers"}, {link: "/charts", label: "Charts"}, {link: "/settings", label: "Settings"}];
