@@ -99,7 +99,7 @@ function Navbar() {
                   <SignOutButton />
                 ) : isAuthenticated && isHomePage ? (
                   <Button className="bg-transparent hover:bg-gray-600" asChild>
-                    <a href="/actions">Chat with Greg</a>
+                    <a href="/dashboard">Chat with Greg</a>
                   </Button>
                 ) : (
                   <SignInButton />
