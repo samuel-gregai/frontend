@@ -29,15 +29,15 @@ const HeroSection = () => {
   };
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0">
+      {/* Background gradient effects with lower z-index */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse-glow animation-delay-2000"></div>
       </div>
 
       <div
         ref={heroRef}
-        className="container mx-auto px-6 text-center fade-in-up"
+        className="container mx-auto px-6 text-center fade-in-up relative z-10 flex items-center justify-center"
       >
         {/* Main heading */}
         <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-tight">
@@ -47,7 +47,7 @@ const HeroSection = () => {
         </h1>
 
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-card-elevated border border-primary/20 rounded-full px-4 py-2 mb-8">
+        <div className="inline-flex items-center gap-2 bg-card-elevated border border-primary/20 rounded-full px-4 py-2 mb-8 w-max justify-center">
           <Sparkles className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium text-foreground/80">
             Post Sales Reinvented
@@ -68,7 +68,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
         <div className="w-6 h-10 border-2 border-muted rounded-full flex justify-center">
           <div className="w-1 h-3 bg-muted rounded-full mt-2 animate-pulse"></div>
         </div>
