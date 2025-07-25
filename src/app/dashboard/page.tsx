@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Send, Users, BarChart3, Settings, Bot, User } from "lucide-react";
+import Link from "next/link";
 
 interface Message {
   id: string;
@@ -83,7 +84,10 @@ const Dashboard = () => {
       <div className="w-64 bg-card border-r border-border flex flex-col">
         <div className="p-6 border-b border-border">
           <h1 className="text-xl font-bold text-foreground">
-            Greg<span className="text-muted-foreground italic"> the AI</span>
+            <Link href="/">
+              Greg
+              <span className="text-muted-foreground italic">the AI</span>
+            </Link>{" "}
           </h1>
         </div>
 
