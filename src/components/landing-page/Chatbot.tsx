@@ -33,10 +33,6 @@ const ChatBot = () => {
     });
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
   const getGregResponse = (userMessage: string): string => {
     const message = userMessage.toLowerCase();
 

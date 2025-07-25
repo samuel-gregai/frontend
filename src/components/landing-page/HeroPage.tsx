@@ -1,32 +1,6 @@
 "use client";
-import { useEffect, useRef } from "react";
 import { Sparkles } from "lucide-react";
 const HeroSection = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate");
-        }
-      },
-      {
-        threshold: 0.1,
-      }
-    );
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
-  const scrollToRegister = () => {
-    const element = document.getElementById("register");
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  };
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
       {/* Background gradient effects with lower z-index */}
@@ -35,10 +9,7 @@ const HeroSection = () => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse-glow animation-delay-2000"></div>
       </div>
 
-      <div
-        ref={heroRef}
-        className="container mx-auto px-6 text-center fade-in-up relative z-10 flex items-center justify-center"
-      >
+      <div className="container mx-auto px-6 text-center fade-in-up relative z-10 flex items-center justify-center">
         {/* Main heading */}
         <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-tight">
           <span className="text-gradient animate-gradient-shift bg-[length:200%_auto]">
@@ -62,9 +33,6 @@ const HeroSection = () => {
             so you can focus on what moves the needle: your customers.
           </span>
         </p>
-
-        {/* Social proof hint */}
-        <div className="mt-16 text-sm text-muted-foreground"></div>
       </div>
 
       {/* Scroll indicator */}
