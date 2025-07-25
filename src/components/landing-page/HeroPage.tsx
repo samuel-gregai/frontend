@@ -1,0 +1,79 @@
+"use client";
+import { useEffect, useRef } from "react";
+import { Sparkles } from "lucide-react";
+const HeroSection = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+        }
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+  const scrollToRegister = () => {
+    const element = document.getElementById("register");
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+  return (
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
+      {/* Background gradient effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse-glow animation-delay-2000"></div>
+      </div>
+
+      <div
+        ref={heroRef}
+        className="container mx-auto px-6 text-center fade-in-up"
+      >
+        {/* Main heading */}
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-tight">
+          <span className="text-gradient animate-gradient-shift bg-[length:200%_auto]">
+            GREG.
+          </span>
+        </h1>
+
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 bg-card-elevated border border-primary/20 rounded-full px-4 py-2 mb-8">
+          <Sparkles className="w-4 h-4 text-primary" />
+          <span className="text-sm font-medium text-foreground/80">
+            Post Sales Reinvented
+          </span>
+        </div>
+
+        {/* Subheading */}
+        <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+          Let your AI-powered assistant handle the admin chaos,
+          <br />
+          <span className="text-foreground">
+            so you can focus on what moves the needle: your customers.
+          </span>
+        </p>
+
+        {/* Social proof hint */}
+        <div className="mt-16 text-sm text-muted-foreground"></div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-muted rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-muted rounded-full mt-2 animate-pulse"></div>
+        </div>
+      </div>
+    </section>
+  );
+};
+export default HeroSection;

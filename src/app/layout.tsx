@@ -29,12 +29,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Toaster richColors />
-          <ClientAuthProvider>
-            <header>
-              <Navbar />
-            </header>
-            {children}
-          </ClientAuthProvider>
+          <ClientAuthProvider>{children}</ClientAuthProvider>
         </ThemeProvider>
       </body>
     </html>
